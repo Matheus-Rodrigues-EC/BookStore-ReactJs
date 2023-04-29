@@ -18,13 +18,13 @@ export default function App() {
 
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<SignInPage />} />
-          <Route path="/cadastro" element={<SignUpPage />} />
-          <Route path="/loja" element={<Store />} />
+          <Route path="/"           element={<SignInPage />} />
+          <Route path="/cadastro"   element={<SignUpPage />} />
+          <Route path="/loja"       element={<Store />} />
           <Route path="/minha-loja" element={<MyStore />} />
-          <Route path="/adicionar" element={<AddBook />} />
-          <Route path="/editar" element={<EditBook />} />
-          <Route path="/historico" element={<Historic />} />
+          <Route path="/adicionar"  element={<AddBook />} />
+          <Route path="/editar"     element={<EditBook />} />
+          <Route path="/historico"  element={<Historic />} />
         </Routes>
       </BrowserRouter>
     </PagesContainer>
@@ -37,6 +37,7 @@ const PagesContainer = styled.main`
   min-width: 350px;
   height: 100vh;
   padding: 15px;
+  box-sizing: border-box;
 `
 
 const Header = styled.div`
