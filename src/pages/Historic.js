@@ -18,7 +18,7 @@ export default function Historic() {
             .catch((error) => {
                 alert(error.message);
             })
-    }, [])
+    }, [historic])
 
 
     return (
@@ -71,7 +71,7 @@ const Sales = styled.section`
         overflow-y: scroll;
     }   
     li{
-        margin-bottom: 7.5%;
+        margin-bottom: 25px;
         p{
             display: flex;
             justify-content: space-between;
