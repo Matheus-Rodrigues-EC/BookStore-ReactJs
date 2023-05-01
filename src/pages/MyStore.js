@@ -58,30 +58,32 @@ export default function MyStore() {
             </Seller>
             <MyBooks>
             {books !== undefined ? (
-                    <ul>
-                        {books.map((book) => {
-                            return(
-                                <li key={book._id}>
-                                    <Infos>
-                                        <h3><strong>Título: </strong></h3>
-                                        <h3>{book.titulo}</h3>
-                                        <p> 
-                                            <span> <strong>Autor(a): </strong> <br/> {book.autor} </span> 
-                                            <span> <strong>Preço: </strong> <br/> {book.valor} </span>
-                                        </p>
-                                    </Infos>
+                    <>
+                        <ul>
+                            {books.map((book) => {
+                                return(
+                                    <li key={book._id}>
+                                        <Infos>
+                                            <img src={book.imagem} alt="Imagem de Capa do Livro"/>
+                                            <h3>{book.titulo}</h3>
+                                            <p> 
+                                                <span>{book.autor} </span> 
+                                                <span>R$ {Number(book.valor).toFixed(2)} </span>
+                                            </p>
+                                        </Infos>
 
-                                    <Buttons>
-                                        <ButtonEdit onClick={() => Navigate("/editar")}>Editar</ButtonEdit>
-                                        <ButtonDelete onClick={() => deleteBook(book._id, book.titulo)}>Deletar</ButtonDelete>
-                                    </Buttons>
-                                </li>
-                            )
-                        })}
+                                        <Buttons>
+                                            <ButtonEdit onClick={() => Navigate("/editar")}>Editar</ButtonEdit>
+                                            <ButtonDelete onClick={() => deleteBook(book._id, book.titulo)}>Deletar</ButtonDelete>
+                                        </Buttons>
+                                    </li>
+                                )
+                            })}
+                        </ul>
                         <Button onClick={() => Navigate("/adicionar")}>Adicionar</Button>
-                    </ul>
+                    </>
                 ) : (
-                    null
+                    <h3>Nenhuma livro cadastrado.</h3>
                 )}
             </MyBooks>
         </Container>
@@ -100,6 +102,7 @@ const Container = styled.div`
     border: 3px solid #800000;
     background-color: #FFFFFF;
     border-radius: 15px;
+    box-shadow: 0 5px 15px rgb(0, 26, 0, .9);
 `
 
 const Seller = styled.section`
@@ -125,17 +128,21 @@ const Seller = styled.section`
     }
 `
 
-const MyBooks = styled.section`
+const MyBooks = styled.div`
     width: 100%;
+    height: 70vh;
     border: 1px solid #860000;
     border-radius: 15px;
     margin: 0 0 0 auto;
     padding: 15px;
     box-sizing: border-box;
-    color: #000;
+    color: #000000;
+    box-shadow: 0 5px 25px rgb(86, 0, 0, .5);
     ul{
         text-decoration: none;
         overflow-y: scroll;
+        height: 65vh;
+        box-sizing: border-box;
     }   
     ul::-webkit-scrollbar{
     display: none;
@@ -144,6 +151,7 @@ const MyBooks = styled.section`
         display: flex;
         margin-bottom: 25px;
         border: 1px solid #860000;
+        border-radius: 15px;
         padding: 5px 10px;
         box-sizing: border-box;
         justify-content: space-between;
@@ -167,19 +175,23 @@ const Infos = styled.div`
     display: flex;
     flex-direction: column;
     width: 60%;
+    img{
+        max-width: 160px;
+        max-height: 240px;
+        border-radius: 15px;
+    }
 `
 
 const Buttons = styled.div`
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     width: 30%;
-    right: 0;
-    justify-content: space-around;
     margin: auto;
+    gap: 50px;
 `
 
 const ButtonEdit = styled.button`
-    border: none;
+    border: 1px solid #860000;
     border-radius: 25px;
     background-color: #ffee00;
     height: 30px;
@@ -188,9 +200,11 @@ const ButtonEdit = styled.button`
     font-size: 15px;
     font-weight: 700;
     margin: 0 5px;
+    box-shadow: 0 5px 5px rgb(128, 128, 128, .2);
 `
 const ButtonDelete = styled(ButtonEdit)`
     background-color: #860000;
+    border: 1px solid #000000;
     color: #FFFFFF;
 `
 
@@ -198,7 +212,7 @@ const Button =styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: auto;
+    margin:  45px auto;
     border: none;
     border-radius: 25px;
     background-color: #008800;
@@ -209,4 +223,5 @@ const Button =styled.div`
     font-family: 'Goudy Bookletter 1911', serif;
     font-size: 25px;
     font-weight: 500;
+    box-shadow: 0 5px 5px #003600;
 `
