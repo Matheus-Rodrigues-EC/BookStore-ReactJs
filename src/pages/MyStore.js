@@ -24,10 +24,10 @@ export default function MyStore() {
             })
     }, [seller, books])
 
-    function deleteBook(id){
+    function deleteBook(id, titulo){
         confirmAlert({
             title: 'Confirmar exclusão',
-            message: `Deseja excluir o livro ${null}`,
+            message: `Deseja excluir o livro ${titulo}`,
             buttons: [
                 {
                     label: 'Excluir',
@@ -38,11 +38,13 @@ export default function MyStore() {
                                 'ID': `${id}`
                             }
                         })
+                            .then((res) => {alert("Livro Excluido com sucesso.")})
+                            .catch((error) => {alert(error.message)})
                     }
                 },
                 {
                     label: 'Cancelar',
-                    onClick: () => { alert("operação cancelada") }
+                    onClick: () => { alert("Operação cancelada") }
                 }
             ]
         });
@@ -71,7 +73,7 @@ export default function MyStore() {
 
                                     <Buttons>
                                         <ButtonEdit onClick={() => Navigate("/editar")}>Editar</ButtonEdit>
-                                        <ButtonDelete onClick={() => deleteBook(book._id)}>Deletar</ButtonDelete>
+                                        <ButtonDelete onClick={() => deleteBook(book._id, book.titulo)}>Deletar</ButtonDelete>
                                     </Buttons>
                                 </li>
                             )
