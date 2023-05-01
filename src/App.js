@@ -7,8 +7,10 @@ import MyStore    from './pages/MyStore';
 import AddBook    from './pages/AddBook';
 import EditBook   from './pages/EditBook';
 import Historic   from "./pages/Historic";
+import { useState } from "react";
 
 export default function App() {
+  const [id, setId] = useState();
   return (
     <PagesContainer>
 
@@ -21,9 +23,9 @@ export default function App() {
           <Route path="/"           element={<SignInPage />} />
           <Route path="/cadastro"   element={<SignUpPage />} />
           <Route path="/loja"       element={<Store />} />
-          <Route path="/minha-loja" element={<MyStore />} />
+          <Route path="/minha-loja" element={<MyStore setId={setId} />} />
           <Route path="/adicionar"  element={<AddBook />} />
-          <Route path="/editar"     element={<EditBook />} />
+          <Route path="/editar"     element={<EditBook id={id}/>} />
           <Route path="/historico"  element={<Historic />} />
         </Routes>
       </BrowserRouter>

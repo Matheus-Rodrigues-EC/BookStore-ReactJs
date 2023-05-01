@@ -6,7 +6,9 @@ import 'react-confirm-alert/src/react-confirm-alert.css';
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-export default function MyStore() {
+export default function MyStore(props) {
+
+    const {setId} = props;
 
     const userId = "06021998"
     const Navigate = useNavigate();
@@ -22,7 +24,12 @@ export default function MyStore() {
             .catch((error) => {
                 alert(error.message);
             })
-    }, [seller, books])
+    }, [seller, books]);
+
+    function editBook(id){ 
+        setId(id);
+        Navigate("/editar");
+    }
 
     function deleteBook(id, titulo){
         confirmAlert({
@@ -73,7 +80,7 @@ export default function MyStore() {
                                         </Infos>
 
                                         <Buttons>
-                                            <ButtonEdit onClick={() => Navigate("/editar")}>Editar</ButtonEdit>
+                                            <ButtonEdit onClick={() => editBook(book._id)}>Editar</ButtonEdit>
                                             <ButtonDelete onClick={() => deleteBook(book._id, book.titulo)}>Deletar</ButtonDelete>
                                         </Buttons>
                                     </li>
