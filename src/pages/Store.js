@@ -97,9 +97,13 @@ const LastSales = styled.section`
     color: #000;
     ul{
         text-decoration: none;
+        overflow-y: scroll;
     }   
+    ul::-webkit-scrollbar{
+    display: none;
+    }
     li{
-        margin-bottom: 7.5%;
+        margin-bottom: 25px;
         p{
             strong{
                 font-weight: 700;
