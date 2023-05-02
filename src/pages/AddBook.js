@@ -130,6 +130,8 @@ const Container = styled.div`
 `
 
 const Title = styled.h1`
+    display: flex;
+    margin: auto;
     color: #860000;
     font-size: 2.5rem;
     font-family: 'Lobster', cursive;
